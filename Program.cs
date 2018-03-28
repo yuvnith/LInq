@@ -23,7 +23,7 @@ namespace LINQ
                 new Student() { StudentID = 4, StudentName = "Ram" , Age = 23 } ,
                 new Student() { StudentID = 5, StudentName = "Ram" , Age = 21 } ,
                 new Student() { StudentID = 6, StudentName = "Chris",  Age = 17 } ,
-                new Student() { StudentID = 7, StudentName = "Rob",Age = 19  } ,
+                new Student() { StudentID = 7, StudentName = "Rob",Age = 18  } ,
             };
 
             Student2[] studentArray2 = {
@@ -152,12 +152,25 @@ namespace LINQ
 
             foreach (var re in res25)
             {
-                Console.WriteLine(re.StudentName+" "+re.Marks);
+                //Console.WriteLine(re.StudentName+" "+re.Marks);
               
             }
 
 
+            //Console.WriteLine(studentArray.All(s=>s.Age<100));
 
+            //Console.WriteLine(studentArray.Any(s => s.Age < 10));
+
+
+            var std = new Student() {Age = 12, StudentID = 1, StudentName = "Bill"};
+
+            //Console.WriteLine(studentArray.Contains(std));
+
+            string temp = "asfas";
+            //Console.WriteLine(temp.MyExtensionMeth());
+
+            var e = new Expressions();
+            e.expr();
 
 
             Console.ReadKey();
