@@ -27,7 +27,7 @@ namespace LINQ
             //Console.WriteLine(res);
 
 
-
+            //s.Age >= 18
             ParameterExpression pe = Expression.Parameter(typeof(Student), "s");
 
             MemberExpression me = Expression.Property(pe, "Age");
@@ -46,6 +46,38 @@ namespace LINQ
                 ExpressionTree.Parameters.Count);
 
             Console.WriteLine("Parameters in Expression Tree: {0}", ExpressionTree.Parameters[0]);
+
+
+            //s=>s.age==18
+            ParameterExpression pe2 = Expression.Parameter(typeof(Student), "s");
+            MemberExpression me2 = Expression.Property(pe2, "Age");
+            ConstantExpression constant2 = Expression.Constant(18, typeof(int));
+            BinaryExpression body2 = Expression.Equal(me2, constant2);
+            var ExpressionTree2 = Expression.Lambda<Func<Student, bool>>(body2, /*new[] {pe2}*/pe2);
+            Console.WriteLine("Expression Tree: {0}", ExpressionTree2);
+
+            //a,b,c=>(a*b)+c
+            ParameterExpression a = Expression.Parameter(typeof(int), "a");
+            ParameterExpression b = Expression.Parameter(typeof(int), "b");
+            ParameterExpression c = Expression.Parameter(typeof(int), "c");
+            ParameterExpression[] pe3 = new ParameterExpression[]{a,b,c};
+
+            BinaryExpression body3 = Expression.Add(Expression.Multiply(a, b), c);
+            var ExpressionTree3 = Expression.Lambda<Func<int, int,int, int>>(body3, pe3);
+            Console.WriteLine("Expression Tree: {0}", ExpressionTree3);
+
+
+            // s => s.Age < 20 && s.Age > 12;
+            ParameterExpression pe4 = Expression.Parameter(typeof(Student), "s");
+            MemberExpression me4 = Expression.Property(pe4, "Age");
+            ConstantExpression ce4 = Expression.Constant(20,typeof(int));
+            ConstantExpression ce42 = Expression.Constant(12, typeof(int));
+            BinaryExpression left = Expression.LessThan(me4, ce4);
+            BinaryExpression right = Expression.GreaterThan(me4, ce42);
+            BinaryExpression Body4 = Expression.And(left, right);
+            var ExpressionTree4 = Expression.Lambda<Func<Student, bool>>(Body4, pe4);
+            Console.WriteLine("Expression Tree: {0}", ExpressionTree4);
+            
 
         }
 
