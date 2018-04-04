@@ -77,8 +77,8 @@ namespace LINQ
             BinaryExpression Body4 = Expression.And(left, right);
             var ExpressionTree4 = Expression.Lambda<Func<Student, bool>>(Body4, pe4);
             Console.WriteLine("Expression Tree: {0}", ExpressionTree4);
-            
 
+            
         }
 
 
